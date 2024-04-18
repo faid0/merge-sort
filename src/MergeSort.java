@@ -2,7 +2,7 @@ public class MergeSort {
 
     // recursive merge sort algorithm
     public int[] recursiveMergeSort(int[] numbers, int from, int to){
-        if(numbers == null) return numbers;
+        if(numbers == null) return null;
         if(numbers.length == 0) return numbers;
         if(to-from <= 1) return  new int[]{numbers[from]};
 
