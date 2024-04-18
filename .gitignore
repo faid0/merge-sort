@@ -27,3 +27,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/merge-sort.iml
+/.idea/modules.xml
+/.idea/misc.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
