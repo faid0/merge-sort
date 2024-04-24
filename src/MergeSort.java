@@ -22,8 +22,39 @@ public class MergeSort {
     }
 
     // Threaded merge sort algorithm
-    public void threadedMergeSort(){
-        // TODO implement threaded merge sort
+    public void threadedMergeSort(int[] numbers, int from, int to){
+        // Base case and edge cases:
+        // If the array is null, empty, or has only one element, or 'from' index is greater than or equal to 'to',
+        // there's nothing to sort.
+        if (numbers == null || numbers.length <= 1 || from >= to || to-from <= 1) {
+            return;
+        }
+        // Get the middle index of the array
+        int half = from + (to - from) / 2;
+
+        Thread t1 = new Thread(() -> {
+            // Recursive call to sort the left half of the array
+            recursiveMergeSort(numbers, from, half);
+        });
+
+        Thread t2 = new Thread(() -> {
+            // Recursive call to sort the right half of the array
+            recursiveMergeSort(numbers, half, to);
+        });
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Merge both sorted halves
+        merge(numbers, from, half, to);
+
     }
 
     // Merge two sorted subarrays: [from, mid) and [mid, to)
