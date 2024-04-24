@@ -4,6 +4,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         int failed = 0;
+        long startTime = System.nanoTime();
         for (int j = 0; j < 100; j++) {
             Random rand = new Random();
             int randIndex = rand.nextInt(0,999999);
@@ -22,6 +23,9 @@ public class Main {
                 failed++;
             }
         }
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime) / 1000000;
+        System.out.println("Dauer: " + duration + " Millisekunden");
         System.out.println("failed: " + failed);
     }
 }
