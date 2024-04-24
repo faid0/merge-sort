@@ -12,10 +12,15 @@ public class Main {
                 randarray[i] = rand.nextInt();
             }
 
+            int[] sorted = Arrays.stream(randarray).sorted().toArray();
             MergeSort a = new MergeSort();
-            int[] res = a.recursiveMergeSort(randarray, 0, randarray.length);
-            if(!Arrays.equals(res, Arrays.stream(randarray).sorted().toArray()))
+            a.recursiveMergeSort(randarray, 0, randarray.length);
+            if(!Arrays.equals(randarray, sorted)) {
+                System.out.println("should be:" + Arrays.toString(sorted));
+
+                System.out.println("but is:" + Arrays.toString(randarray) +"\n");
                 failed++;
+            }
         }
         System.out.println("failed: " + failed);
     }
